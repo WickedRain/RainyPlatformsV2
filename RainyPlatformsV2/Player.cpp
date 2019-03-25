@@ -25,7 +25,7 @@ void Player::draw()const
 	}
 }
 
-void Player::pollEvents(SDL_Event &event) {
+/*void Player::pollEvents(SDL_Event &event) {
 	if (event.type == SDL_KEYDOWN) {
 		switch (event.key.keysym.sym) {
 		case SDLK_w:
@@ -42,6 +42,17 @@ void Player::pollEvents(SDL_Event &event) {
 			break;
 		}
 	}
+}*/
+
+void Player::keyboardHandler() {
+	if (state[SDL_SCANCODE_W])
+		_y -= 2;
+	if (state[SDL_SCANCODE_A])
+		_x -= 2;
+	if (state[SDL_SCANCODE_S])
+		_y += 2;
+	if (state[SDL_SCANCODE_D])
+		_x += 2;
 }
 
 Player::~Player() {
