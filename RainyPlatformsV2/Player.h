@@ -18,8 +18,9 @@ public:
 	~Player();
 
 	void draw()const;
-	/*Bad way for handling keyboard events*/
-	//void pollEvents(SDL_Event &event);
+	
+	//Bad way for handling keyboard events
+	//void pollEvents(SDL_Event &event); 
 
 	void keyboardHandler();
 };

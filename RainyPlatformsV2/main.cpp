@@ -3,22 +3,21 @@
 #include "Window.h"
 #include "Player.h"
 
-void pollEvents(Window &window/*, Player &rect*/) {
+void pollEvents(Window &window) {
 	SDL_Event event;
 
 	if (SDL_PollEvent(&event)) {
-		//rect.pollEvents(event);
 		window.pollEvents(event);
 	}
 }
 
 int main(int argc, char *argv[]) {
-	Window window("Rainy Platforms", 800, 600);
+	Window window("Rainy Platforms", 800, 600, "Assets/background.jpg");
 	Player rect(window, 120, 120, 100, 100, "Assets/Idle (1).png");
 
 	while (window.running()) {
 		rect.keyboardHandler();
-		pollEvents(window/*, rect*/);
+		pollEvents(window);
 		rect.draw();
 		window.clear();
 	}

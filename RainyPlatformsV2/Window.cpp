@@ -2,7 +2,7 @@
 #include <SDL_image.h>
 #include <iostream>
 
-Window::Window(const string &title, int width, int height) :_title(title), _width(width), _height(height)
+Window::Window(const string &title, int width, int height, const string& image_path) :_title(title), _width(width), _height(height), _image_path(image_path)
 {
 	isRunning = init();
 }
@@ -37,6 +37,10 @@ bool Window::init()
 		return 0;
 	}
 
+	//Creates background texture and frees surface used for creation
+	SDL_Surface* surface = IMG_Load(_image_path.c_str());
+	_background_texture = SDL_CreateTextureFromSurface(_renderer, surface);
+	SDL_FreeSurface(surface);
 	return true;
 }
 
@@ -59,8 +63,9 @@ void Window::pollEvents(SDL_Event &event) {
 void Window::clear() const {
 	//Renderer Properties
 	SDL_RenderPresent(_renderer);
-	SDL_SetRenderDrawColor(_renderer, 66, 134, 244, 255);
 	SDL_RenderClear(_renderer);
+	//Background render
+	SDL_RenderCopy(_renderer, _background_texture, NULL, NULL);
 }
 
 Window::~Window() {

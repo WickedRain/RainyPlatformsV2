@@ -44,6 +44,7 @@ void Player::draw()const
 	}
 }*/
 
+//This Function handles the keyboard states
 void Player::keyboardHandler() {
 	if (state[SDL_SCANCODE_W])
 		_y -= 2;

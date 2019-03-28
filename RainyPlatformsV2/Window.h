@@ -18,16 +18,21 @@ class Window
 
 	//Creates window and sets to null
 	SDL_Window *_window = nullptr;
+
+	//Creates background texture
+	SDL_Texture* _background_texture = nullptr;
+
+	string _image_path;
 protected:
 	SDL_Renderer *_renderer = nullptr;
 
 public:
 
-	Window(const string &title, int width, int height);
+	Window(const string &title, int width, int height, const string &image_path);
 	~Window();
 
 	inline bool running()const { return isRunning; }
-
+	
 	void pollEvents(SDL_Event &event);
 	void clear() const;
 };
