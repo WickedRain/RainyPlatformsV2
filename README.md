@@ -6,9 +6,9 @@ This is a University Project I have for my second semester, I chose to make a 2D
 Right now it's super janky and barebones.
 
 Things to implement:
--Gravity
--Jumping
-+AntiGhosting (Keyboard States) (Implemented)
-+Optimized Texture loading (Implemented)
--.map scanner
+- Gravity
+- Jumping
+- ~~AntiGhosting (Keyboard States) (Implemented)
+- ~~Optimized Texture loading (Implemented)
+- .map scanner
 
