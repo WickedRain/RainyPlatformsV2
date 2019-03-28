@@ -2,24 +2,24 @@
 #include <stdio.h>
 #include "Window.h"
 #include "Player.h"
+#include "timer.h"
 
-void pollEvents(Window &window) {
-	SDL_Event event;
-
-	if (SDL_PollEvent(&event)) {
-		window.pollEvents(event);
-	}
-}
+const int FRAMES_PER_SECOND = 60; 
 
 int main(int argc, char *argv[]) {
 	Window window("Rainy Platforms", 800, 600, "Assets/background.jpg");
 	Player rect(window, 120, 120, 100, 100, "Assets/Idle (1).png");
+	timer FPS;
 
 	while (window.running()) {
+		FPS.start();
 		rect.keyboardHandler();
-		pollEvents(window);
+		window.pollEvents();
 		rect.draw();
 		window.clear();
+
+		if (FPS.get_ticks() < 1000 / FRAMES_PER_SECOND) 
+			SDL_Delay((1000 / FRAMES_PER_SECOND) - FPS.get_ticks());
 	}
 	return 0;
 }

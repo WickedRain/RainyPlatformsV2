@@ -25,35 +25,19 @@ void Player::draw()const
 	}
 }
 
-/*void Player::pollEvents(SDL_Event &event) {
-	if (event.type == SDL_KEYDOWN) {
-		switch (event.key.keysym.sym) {
-		case SDLK_w:
-			_y -= 2;
-			break;
-		case SDLK_a:
-			_x -= 2;
-			break;
-		case SDLK_s:
-			_y += 2;
-			break;
-		case SDLK_d:
-			_x += 2;
-			break;
-		}
-	}
-}*/
-
 //This Function handles the keyboard states
 void Player::keyboardHandler() {
-	if (state[SDL_SCANCODE_W])
-		_y -= 2;
-	if (state[SDL_SCANCODE_A])
+	if (state[SDL_SCANCODE_LEFT])
 		_x -= 2;
-	if (state[SDL_SCANCODE_S])
-		_y += 2;
-	if (state[SDL_SCANCODE_D])
+	if (state[SDL_SCANCODE_RIGHT])
 		_x += 2;
+	if (state[SDL_SCANCODE_SPACE]) {
+
+	}
+
+	if (state[SDL_SCANCODE_LSHIFT]) {
+
+	}
 }
 
 Player::~Player() {

@@ -33,7 +33,7 @@ public:
 
 	inline bool running()const { return isRunning; }
 	
-	void pollEvents(SDL_Event &event);
+	void pollEvents();
 	void clear() const;
 };
 
