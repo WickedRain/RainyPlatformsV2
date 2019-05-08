@@ -15,7 +15,7 @@ public:
 	void pause();
 	void unpause();
 	int get_ticks();
-	int get_deltaTime();
+	double get_deltaTime();
 	bool is_started() {
 		return started;
 	}

@@ -19,17 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="menu.h" />
+    <ClInclude Include="Camara.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camara.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

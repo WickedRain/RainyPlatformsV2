@@ -41,7 +41,7 @@ int timer::get_ticks() {
 	return 0;
 }
 
-int timer::get_deltaTime() {
+double timer::get_deltaTime() {
 	Uint64 currentFrame = SDL_GetPerformanceCounter();
 	Uint64 prevFrame = 0;
 	double deltaTime = 0;
@@ -54,6 +54,5 @@ int timer::get_deltaTime() {
 		deltaTime = (double)((currentFrame - prevFrame) * 1000 / (double)SDL_GetPerformanceFrequency());
 		return deltaTime;
 	}
-	return 0;
 }
 

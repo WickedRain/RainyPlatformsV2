@@ -2,7 +2,7 @@
 #include <SDL_image.h>
 #include <iostream>
 
-Window::Window(const string &title, int width, int height, const string& image_path) :_title(title), _width(width), _height(height), _image_path(image_path)
+Window::Window(const string &title, int width, int height/*, const string& image_path*/) :_title(title), _width(width), _height(height)/*, _image_path(image_path)*/
 {
 	isRunning = init();
 }
@@ -24,7 +24,7 @@ bool Window::init()
 
 	//Checks if Window Creation had no errors
 	if (_window == NULL) {
-		cerr << "failled to create window!" << SDL_GetError() << endl;
+		cerr << "Failed to create window! - WINDOW.CPP" << SDL_GetError() << endl;
 		return 0;
 	}
 
@@ -33,14 +33,15 @@ bool Window::init()
 
 	//Checks if Renderer creation had no errors
 	if (_renderer == NULL) {
-		cerr << "Failed to create renderer!" << SDL_GetError() << endl;
+		cerr << "Failed to create renderer! - WINDOW.CPP" << SDL_GetError() << endl;
 		return 0;
 	}
-
+	/*
 	//Creates background texture and frees surface used for creation
 	SDL_Surface* surface = IMG_Load(_image_path.c_str());
 	_background_texture = SDL_CreateTextureFromSurface(_renderer, surface);
 	SDL_FreeSurface(surface);
+	*/
 	return true;
 }
 

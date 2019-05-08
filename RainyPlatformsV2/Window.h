@@ -28,11 +28,10 @@ protected:
 
 public:
 
-	Window(const string &title, int width, int height, const string &image_path);
+	Window(const string &title, int width, int height/*, const string &image_path*/);
 	~Window();
 
 	inline bool running()const { return isRunning; }
-	
 	void pollEvents();
 	void clear() const;
 };

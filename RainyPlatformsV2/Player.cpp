@@ -6,10 +6,10 @@ Player::Player(const Window &window, int width, int height, int x, int y, const 
 	//Auto basically makes the var same type as return type of IMG_LOAD, same as SDL_Surface*
 	SDL_Surface* surface = IMG_Load(image_path.c_str()); // <----- Can use auto surface here
 	if (!surface)
-		cerr << "Failed to create surface!" << endl;
+		cerr << "Failed to create surface! - PLAYER.CPP" << endl;
 	_player_texture = SDL_CreateTextureFromSurface(_renderer, surface);
 	if (!_player_texture)
-		cerr << "Failed to create texture!" << endl;
+		cerr << "Failed to create texture! - PLAYER.CPP" << endl;
 	SDL_FreeSurface(surface);
 }
 
@@ -33,10 +33,6 @@ void Player::keyboardHandler(timer& time) {
 		_x += 2;
 	if (state[SDL_SCANCODE_SPACE]) {
 		jump(time);
-		currentForceJump = forceJump;
-	}
-	if (state[SDL_SCANCODE_LSHIFT]) {
-
 	}
 }
 
@@ -70,7 +66,8 @@ bool Player::check_collision(SDL_Rect A, SDL_Rect B) {
 void Player::jump(timer& time) {
 	if (!isJumping) {
 		isJumping = true;
-		int deltaTime = time.get_deltaTime();	
+		double deltaTime = time.get_deltaTime();
+		currentForceJump = forceJump;
 		player.y += currentForceJump * deltaTime;
 		
 		if (currentForceJump > fallSpeed)
