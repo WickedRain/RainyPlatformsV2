@@ -1,8 +1,8 @@
 #include "Player.h"
 #include <SDL_image.h>
 
-Player::Player(const Window &window, int width, int height, int x, int y, const string &image_path):Window(window), _width(width), _height(height), _x(x), _y(y) {
-	
+Player::Player(const Window &window, int width, int height, int x, int y, const string &image_path) :Window(window), _width(width), _height(height), _x(x), _y(y) {
+
 	//Auto basically makes the var same type as return type of IMG_LOAD, same as SDL_Surface*
 	SDL_Surface* surface = IMG_Load(image_path.c_str()); // <----- Can use auto surface here
 	if (!surface)
@@ -52,13 +52,13 @@ bool Player::check_collision(SDL_Rect A, SDL_Rect B) {
 	topB = B.y;
 	bottomB = B.y + B.h;
 
-	if (bottomA <= topB)  
-		return false; 
-	if (topA >= bottomB) 
-		return false; 
-	if (rightA <= leftB) 
-		return false; 
-	if (leftA >= rightB) 
+	if (bottomA <= topB)
+		return false;
+	if (topA >= bottomB)
+		return false;
+	if (rightA <= leftB)
+		return false;
+	if (leftA >= rightB)
 		return false;
 	return true;
 }
@@ -69,7 +69,7 @@ void Player::jump(timer& time) {
 		double deltaTime = time.get_deltaTime();
 		currentForceJump = forceJump;
 		player.y += currentForceJump * deltaTime;
-		
+
 		if (currentForceJump > fallSpeed)
 			forceJump -= gravity * deltaTime;
 		else

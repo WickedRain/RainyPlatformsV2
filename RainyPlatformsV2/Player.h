@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-class Player: public Window
+class Player : public Window
 {
 	//The player attributes
 	int _width, _height;
@@ -35,8 +35,8 @@ public:
 
 	void draw();
 
-	/*This function takes to rects and compares 
-	their x-y values to decide whether they 
+	/*This function takes to rects and compares
+	their x-y values to decide whether they
 	are colliding or not.*/
 	bool check_collision(SDL_Rect A, SDL_Rect B);
 

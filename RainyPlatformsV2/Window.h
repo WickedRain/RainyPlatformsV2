@@ -20,7 +20,7 @@ class Window
 	SDL_Window *_window = nullptr;
 
 	//Creates background texture
-	SDL_Texture* _background_texture = nullptr;
+	//SDL_Texture* _background_texture = nullptr;
 
 	string _image_path;
 protected:

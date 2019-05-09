@@ -69,7 +69,7 @@ void Window::clear() const {
 	SDL_RenderPresent(_renderer);
 	SDL_RenderClear(_renderer);
 	//Background render
-	SDL_RenderCopy(_renderer, _background_texture, NULL, NULL);
+//	SDL_RenderCopy(_renderer, _background_texture, NULL, NULL);
 }
 
 Window::~Window() {

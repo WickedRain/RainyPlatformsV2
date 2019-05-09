@@ -15,5 +15,7 @@ public:
 	int TypeID;
 
 	Tile();
+
+	
 };
 

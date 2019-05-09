@@ -7,7 +7,7 @@
 #include "Define.h"
 #include "Camara.h"
 
-const int FRAMES_PER_SECOND = 60; 
+const int FRAMES_PER_SECOND = 60;
 
 const Uint8* state = SDL_GetKeyboardState(NULL);
 void keyboardHandler(Camara camara);
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 		character.draw();
 		window.clear();
 
-		if (FPS.get_ticks() < 1000 / FRAMES_PER_SECOND) 
+		if (FPS.get_ticks() < 1000 / FRAMES_PER_SECOND)
 			SDL_Delay((1000 / FRAMES_PER_SECOND) - FPS.get_ticks());
 	}
 	return 0;

@@ -1,15 +1,15 @@
 #include "Map.h"
 using namespace std;
 
-Map::Map(const Window &window, const string &image_path): Window(window)
+Map::Map(const Window &window, const string &image_path) : Window(window)
 {
 	Surf_Tileset = IMG_Load(image_path.c_str()); // <----- Can use auto surface here
 	if (!Surf_Tileset)
-		cerr << "Failed to create surface!" << endl;
+		cerr << "Failed to create surface! - MAP.CPP" << endl;
 	_tileset = SDL_CreateTextureFromSurface(_renderer, Surf_Tileset);
 	if (!_tileset)
-		cerr << "Failed to create texture!" << endl;
-	//SDL_FreeSurface(Surf_Tileset);
+		cerr << "Failed to create texture! - MAP.CPP" << endl;
+	SDL_FreeSurface(Surf_Tileset);
 }
 
 //This function load the .map into the vector TileList in order to render them, the .map file is in the format TileID :TypeID
@@ -38,8 +38,10 @@ void Map::OnRender(int MapX, int MapY)
 {
 	if (_tileset == NULL)
 		return;
-	int TilesetWidth = Surf_Tileset->w / TILE_SIZE;
-	int TilesetHeight = Surf_Tileset->h / TILE_SIZE;
+	int w, h;
+	SDL_QueryTexture(_tileset, NULL, NULL, &w, &h);
+	int TilesetWidth = w / TILE_SIZE;
+	int TilesetHeight = h / TILE_SIZE;
 
 	int ID = 0;
 
@@ -53,10 +55,10 @@ void Map::OnRender(int MapX, int MapY)
 			int tY = MapY + (Y * TILE_SIZE);
 
 			int TilesetX = (TileList[ID].TileID % TilesetWidth) * TILE_SIZE;
-			int TilesetY = (TileList[ID].TileID / TilesetWidth) * TILE_SIZE;
-			
+			int TilesetY = (TileList[ID].TileID / TilesetHeight) * TILE_SIZE;
+
 			//Use these rects for the render copy {X,Y,H,W}
-			SDL_Rect _SrcTile = { TilesetX, TilesetX, TILE_SIZE, TILE_SIZE };
+			SDL_Rect _SrcTile = { TilesetX, TilesetY, TILE_SIZE, TILE_SIZE };
 			SDL_Rect _DstRect = { MapX, MapY, tY, tX };
 			SDL_RenderCopy(_renderer, _tileset, &_SrcTile, &_DstRect);
 

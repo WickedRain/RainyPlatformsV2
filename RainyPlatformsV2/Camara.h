@@ -16,7 +16,7 @@ public:
 	Camara();
 	static Camara CamaraControl;
 	int TargetMode;
-	
+
 	void OnMove(int MoveX, int MoveY);
 
 	int getX();
