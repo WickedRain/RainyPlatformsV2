@@ -8,7 +8,8 @@ Right now it's super janky and barebones.
 Things to implement:
 - Gravity
 - Jumping
-- ~~AntiGhosting (Keyboard States) (Implemented)~~
-- ~~Optimized Texture loading (Implemented)~~
-- .map scanner
-
+- ~~AntiGhosting (Keyboard States)~~ (Implemented)
+- ~~Optimized Texture loading~~ (Implemented)
+- ~~.map scanner~~ (Implemented)
+- ~~Exception Handling~~ (Implemented)
+- ~~Map Scrolling~~ (Implemented)
