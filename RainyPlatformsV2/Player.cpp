@@ -5,11 +5,23 @@ Player::Player(const Window &window, int width, int height, int x, int y, const 
 
 	//Auto basically makes the var same type as return type of IMG_LOAD, same as SDL_Surface*
 	SDL_Surface* surface = IMG_Load(image_path.c_str()); // <----- Can use auto surface here
-	if (!surface)
-		cerr << "Failed to create surface! - PLAYER.CPP" << endl;
-	_player_texture = SDL_CreateTextureFromSurface(_renderer, surface);
-	if (!_player_texture)
-		cerr << "Failed to create texture! - PLAYER.CPP" << endl;
+	//Check for any errors
+	try {
+		//If surface wasn't created throw 1
+		if (!surface) throw 1;
+		//If it was then create player, then, if _player_texture wasn't created, throw 2
+		else {
+			_player_texture = SDL_CreateTextureFromSurface(Window::_renderer, surface);
+			if (!_player_texture) throw 2;
+		}
+	}
+	//Exception handling
+	catch (int e) {
+		if (e == 1) 
+			cerr << "Failed to create surface! - PLAYER.CPP" << endl;
+		if (e == 2)
+			cerr << "Failed to create texture! - PLAYER.CPP" << endl;
+	}		
 	SDL_FreeSurface(surface);
 }
 
@@ -17,20 +29,24 @@ void Player::draw()
 {
 	player = { _x, _y, _width, _height };
 	if (_player_texture) {
-		SDL_RenderCopy(_renderer, _player_texture, nullptr, &player);
+		SDL_RenderCopy(Window::_renderer, _player_texture, nullptr, &player);
 	}
 	else {
-		SDL_SetRenderDrawColor(_renderer, _r, _g, _b, _a);
-		SDL_RenderFillRect(_renderer, &player);
+		SDL_SetRenderDrawColor(Window::_renderer, _r, _g, _b, _a);
+		SDL_RenderFillRect(Window::_renderer, &player);
 	}
 }
 
 //This Function handles the keyboard states
 void Player::keyboardHandler(timer& time) {
-	if (state[SDL_SCANCODE_LEFT])
-		_x -= 2;
-	if (state[SDL_SCANCODE_RIGHT])
-		_x += 2;
+	if (state[SDL_SCANCODE_LEFT]) {
+		_x -= 1;
+		mapX += 2;
+	}
+	if (state[SDL_SCANCODE_RIGHT]) {
+		_x += 1;
+		mapX -= 2;
+	}
 	if (state[SDL_SCANCODE_SPACE]) {
 		jump(time);
 	}

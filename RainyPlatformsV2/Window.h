@@ -35,4 +35,3 @@ public:
 	void pollEvents();
 	void clear() const;
 };
-

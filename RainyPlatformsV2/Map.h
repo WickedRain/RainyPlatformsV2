@@ -19,4 +19,3 @@ public:
 	bool OnLoad(const char* File);
 	void OnRender(int MapX, int MapY);
 };
-

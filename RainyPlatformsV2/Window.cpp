@@ -11,37 +11,55 @@ Window::Window(const string &title, int width, int height/*, const string& image
 bool Window::init()
 {
 	//Checks if Video Initialization had no errors
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		cerr << "Failed to initalize Subsystems!..." << SDL_GetError() << endl;
-		return false;
+	try {
+		//If SDL_Init returns an error
+		if (SDL_Init(SDL_INIT_VIDEO) != 0) throw 1;
+
+		//If IMG_Init returns an error
+		if (IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) != (IMG_INIT_PNG | IMG_INIT_JPG)) throw 2;
 	}
-	if (IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) != (IMG_INIT_PNG | IMG_INIT_JPG)) {
-		cerr << "Failed to initalize SDL_image!" << IMG_GetError() << endl;
-		return false;
+	//Exception management
+	catch (int e) {
+		if (e == 1) {
+			cerr << "Failed to initalize Subsystems!..." << SDL_GetError() << endl;
+			return false;
+		}
+		if (e == 2) {
+			cerr << "Failed to initalize SDL_image!" << IMG_GetError() << endl;
+			return false;
+		}
 	}
 	//Creates Window
 	_window = SDL_CreateWindow(_title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _width, _height, 0);
 
 	//Checks if Window Creation had no errors
-	if (_window == NULL) {
+	try {
+		//If _window has still not been created, throw 3
+		if (_window == NULL) throw 3;
+	}
+	//Exception management
+	catch (int e) {
+		if (e == 3) {
 		cerr << "Failed to create window! - WINDOW.CPP" << SDL_GetError() << endl;
 		return 0;
+		}
 	}
 
 	//Creates Renderer
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
 
 	//Checks if Renderer creation had no errors
-	if (_renderer == NULL) {
-		cerr << "Failed to create renderer! - WINDOW.CPP" << SDL_GetError() << endl;
-		return 0;
+	try {
+		//If _renderer has still not been created, throw 4
+		if (_renderer == NULL) throw 4;
 	}
-	/*
-	//Creates background texture and frees surface used for creation
-	SDL_Surface* surface = IMG_Load(_image_path.c_str());
-	_background_texture = SDL_CreateTextureFromSurface(_renderer, surface);
-	SDL_FreeSurface(surface);
-	*/
+	//Exception management
+	catch (int e) {
+		if (e == 4) {
+			cerr << "Failed to create renderer! - WINDOW.CPP" << SDL_GetError() << endl;
+			return 0;
+		}
+	}
 	return true;
 }
 
@@ -68,8 +86,6 @@ void Window::clear() const {
 	//Renderer Properties
 	SDL_RenderPresent(_renderer);
 	SDL_RenderClear(_renderer);
-	//Background render
-//	SDL_RenderCopy(_renderer, _background_texture, NULL, NULL);
 }
 
 Window::~Window() {

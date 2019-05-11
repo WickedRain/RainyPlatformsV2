@@ -18,8 +18,13 @@ bool Map::OnLoad(const char* File)
 	TileList.clear();
 	FILE* FileHandle = fopen(File, "r");
 
-	if (!FileHandle)
-		return false;
+	try {
+		if (!FileHandle) throw 1;
+	}
+	catch (int e) {
+		if (e == 1)
+			return false;
+	}
 	for (int Y = 0; Y < MAP_HEIGHT; Y++) {
 		for (int X = 0; X < MAP_WIDTH; X++) {
 			Tile tempTile;
@@ -59,7 +64,7 @@ void Map::OnRender(int MapX, int MapY)
 
 			//Use these rects for the render copy {X,Y,H,W}
 			SDL_Rect _SrcTile = { TilesetX, TilesetY, TILE_SIZE, TILE_SIZE };
-			SDL_Rect _DstRect = { MapX, MapY, tY, tX };
+			SDL_Rect _DstRect = { MapX + tX, MapY + tY, TILE_SIZE, TILE_SIZE };
 			SDL_RenderCopy(_renderer, _tileset, &_SrcTile, &_DstRect);
 
 			ID++;

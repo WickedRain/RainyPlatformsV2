@@ -43,6 +43,8 @@ public:
 	//Function used for jumping
 	void jump(timer& time);
 
+	//Variable used for map positon
+	int mapX = 0;
+
 	void keyboardHandler(timer& time);
 };
-
