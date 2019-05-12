@@ -30,7 +30,7 @@ bool Map::OnLoad(const char* File)
 			Tile tempTile;
 			//Read the file for the num:num to convert to tiles
 			fscanf(FileHandle, "%d:%d ", &tempTile.TileID, &tempTile.TypeID);
-
+			
 			TileList.push_back(tempTile);
 		}
 		fscanf(FileHandle, "\n");

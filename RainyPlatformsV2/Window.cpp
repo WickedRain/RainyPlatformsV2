@@ -2,7 +2,7 @@
 #include <SDL_image.h>
 #include <iostream>
 
-Window::Window(const string &title, int width, int height/*, const string& image_path*/) :_title(title), _width(width), _height(height)/*, _image_path(image_path)*/
+Window::Window(const string &title, int width, int height) :_title(title), _width(width), _height(height)/*, _image_path(image_path)*/
 {
 	isRunning = init();
 }
